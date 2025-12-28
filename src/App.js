@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [email, setEmail] = useState('');
   const [result, setResult] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
@@ -23,15 +24,22 @@ function App() {
       return;
     }
 
+    setLoading(true);
+    setResult('');
+
     try {
-      const response = await fetch(`https://bilalm14.pythonanywhere.com/predict?message=${encodeURIComponent(email)}`, {
-        method: 'GET',
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/predict?message=${encodeURIComponent(email)}`,
+        { method: 'GET' }
+      );
+
       const data = await response.json();
       setResult(data.prediction);
     } catch (error) {
       console.error('Error:', error);
       setResult('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,21 +50,46 @@ function App() {
         <h1>MailGuard</h1>
         <i className="fas fa-shield"></i>
       </div>
+
       <p>Email Spam Classifier</p>
-      <textarea 
+
+      <textarea
         id="emailInput"
         name="emailInput"
-        value={email} 
-        onChange={handleInputChange} 
-        placeholder="Enter your email here..." 
+        value={email}
+        onChange={handleInputChange}
+        placeholder="Enter your email here..."
+        disabled={loading}
       />
+
       <div className="button-container">
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handleSubmit}>Enter</button>
+        <button onClick={handleClear} disabled={loading}>
+          Clear
+        </button>
+        <button onClick={handleSubmit} disabled={loading}>
+          {loading ? 'Checking...' : 'Enter'}
+        </button>
       </div>
-      {result && (
-        <p className='result'>
-          {result === 'Please enter text in the textbox.' ? result : <><b>Classification:</b> <span className={result === 'Spam' ? 'spam' : 'not-spam'}>{result}</span></>}
+
+      {loading && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+          <p className="loading-text">Analyzing email...</p>
+        </div>
+      )}
+
+      {result && !loading && (
+        <p className="result">
+          {result === 'Please enter text in the textbox.' ? (
+            result
+          ) : (
+            <>
+              <b>Classification:</b>{' '}
+              <span className={result === 'Spam' ? 'spam' : 'not-spam'}>
+                {result}
+              </span>
+            </>
+          )}
         </p>
       )}
     </div>

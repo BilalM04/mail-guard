@@ -29,20 +29,26 @@ This repository contains the front-end application for classifying emails as spa
 
 ### Installation
 
-1. **Clone the Repository**:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/BilalM04/mail-guard.git
    cd mail-guard
    ```
-2. **Install Dependencies:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
-3. **Run the Application:**
+3. **Configure environment variables:**
+   - Create a `.env` file by copying the example:
+      ```bash
+      cp .env.example .env
+      ```
+   - Update the values in `.env` as needed.
+4. **Run the application:**
    ```bash
    npm start
    ```
-4. The application will be accessible at <http://localhost:3000>.
+5. The application will be accessible at <http://localhost:3000>.
 
 ## Backend
 
