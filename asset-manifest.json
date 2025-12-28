@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/mail-guard/static/css/main.26a83fea.css",
-    "main.js": "/mail-guard/static/js/main.b2910ed9.js",
+    "main.css": "/mail-guard/static/css/main.3c0dc8cd.css",
+    "main.js": "/mail-guard/static/js/main.bdf8b4b9.js",
     "index.html": "/mail-guard/index.html",
-    "main.26a83fea.css.map": "/mail-guard/static/css/main.26a83fea.css.map",
-    "main.b2910ed9.js.map": "/mail-guard/static/js/main.b2910ed9.js.map"
+    "main.3c0dc8cd.css.map": "/mail-guard/static/css/main.3c0dc8cd.css.map",
+    "main.bdf8b4b9.js.map": "/mail-guard/static/js/main.bdf8b4b9.js.map"
   },
   "entrypoints": [
-    "static/css/main.26a83fea.css",
-    "static/js/main.b2910ed9.js"
+    "static/css/main.3c0dc8cd.css",
+    "static/js/main.bdf8b4b9.js"
   ]
 }
